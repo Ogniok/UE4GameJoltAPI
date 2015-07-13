@@ -433,8 +433,6 @@ FGameJoltRequestData* FGameJoltAPI::PerformHTTPRequest(FString URL, ERequest Req
 	//Encode spaces
 	URL = URL.Replace(TEXT(" "), TEXT("%20"), ESearchCase::IgnoreCase);
 
-	UE_LOG(GameJoltAPI, Error, TEXT("(URL) %s"), *URL);
-
 	//Set URL
 	Request->SetURL(URL);
 
@@ -452,8 +450,6 @@ void FGameJoltAPI::RequestCompletedCallback(FHttpRequestPtr Request, FHttpRespon
 	FGameJoltRequestData* RequestData = RequestsData.Find(Request);
 	ERequest RequestType = GetRequestTypeFromPtr(Request);
 	
-	UE_LOG(GameJoltAPI, Error, TEXT("(Request %s response) %s"), *RequestToString(RequestType), *Response->GetContentAsString());
-
 	if(Success)
 	{
 		if(RequestType == ERequest::REQUEST_Auth)
